@@ -39,20 +39,14 @@ public class CallbackTest {
     }
 
     @Test
-    public void shouldSendForm() throws InterruptedException {
+    public void shouldSendForm() {
         driver.get("http://localhost:9999");
-        Thread.sleep(500);
         WebElement form = driver.findElement(By.cssSelector("[action='/']"));
         form.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Иван-Иван Петр");
-        Thread.sleep(500);
         form.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79110000000");
-        Thread.sleep(500);
         form.findElement(By.cssSelector(".checkbox__box")).click();
-        Thread.sleep(500);
         form.findElement(By.cssSelector(".button__content")).click();
-        Thread.sleep(500);
         String text = driver.findElement(By.cssSelector("[data-test-id='order-success']")).getText();
-        Thread.sleep(500);
         assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", text.trim());
 
     }
